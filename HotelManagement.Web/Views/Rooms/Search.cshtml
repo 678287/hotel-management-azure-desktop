@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Search Rooms";
+}
+
+<h2>Search Available Rooms</h2>
+
+<form method="get" asp-action="SearchResults">
+    <div>
+        <label>Start Date</label>
+        <input type="date" name="start" required />
+    </div>
+    <div>
+        <label>End Date</label>
+        <input type="date" name="end" required />
+    </div>
+    <div>
+        <label>Beds</label>
+        <select name="beds">
+            <option value="">Any</option>
+            <option value="1">1 Bed</option>
+            <option value="2">2 Beds</option>
+            <option value="3">3 Beds</option>
+        </select>
+    </div>
+    <div>
+        <label>Quality</label>
+        <select name="quality">
+            <option value="">Any</option>
+            <option value="Standard">Standard</option>
+            <option value="Deluxe">Deluxe</option>
+            <option value="Suite">Suite</option>
+        </select>
+    </div>
+    <button type="submit">Search</button>
+</form>

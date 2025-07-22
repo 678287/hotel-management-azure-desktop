@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Vs\\HotelManagement.Personnel\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\HotelManagement.Personnel.bundle.scp.css",
+      "PackagePath": "staticwebassets\\HotelManagement.Personnel.a2tzg9uey8.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\Vs\\HotelManagement.Personnel\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "D:\\Vs\\HotelManagement.Personnel\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Vs\\HotelManagement.Personnel\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\Vs\\HotelManagement.Personnel\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.HotelManagement.Personnel.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.HotelManagement.Personnel.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.HotelManagement.Personnel.props",
+      "PackagePath": "build\\HotelManagement.Personnel.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.HotelManagement.Personnel.props",
+      "PackagePath": "buildMultiTargeting\\HotelManagement.Personnel.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.HotelManagement.Personnel.props",
+      "PackagePath": "buildTransitive\\HotelManagement.Personnel.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

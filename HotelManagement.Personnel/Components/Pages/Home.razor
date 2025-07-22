@@ -1,0 +1,26 @@
+﻿@page "/"
+@inject NavigationManager NavManager
+@using HotelManagement.Shared.Models
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+<button class="btn btn-lg btn-primary" @onclick="@(() => NavigateToTasks(TaskType.Cleaning))">
+    <i class="fas fa-broom me-2"></i> Cleaning Staff
+</button>
+<button class="btn btn-lg btn-warning" @onclick="@(() => NavigateToTasks(TaskType.Maintenance))">
+    <i class="fas fa-tools me-2"></i> Maintenance
+</button>
+<button class="btn btn-lg btn-info" @onclick="@(() => NavigateToTasks(TaskType.RoomService))">
+    <i class="fas fa-concierge-bell me-2"></i> Room Service
+</button>
+
+
+
+@code {
+    private void NavigateToTasks(TaskType role)
+    {
+        // Navigating to the tasks page with the role as a parameter
+        NavManager.NavigateTo($"/tasks/{(int)role}");
+    }
+}

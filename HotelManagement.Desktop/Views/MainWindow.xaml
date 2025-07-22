@@ -1,0 +1,44 @@
+﻿<Window x:Class="HotelManagement.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Hotel Management" Height="500" Width="800">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Room List -->
+        <ListBox x:Name="RoomsList"
+                 DisplayMemberPath="Number"
+                 SelectionChanged="RoomsList_SelectionChanged"
+                 Margin="0,0,10,0"/>
+
+        <!-- Detail View -->
+        <StackPanel Grid.Column="1" Margin="10,0,0,0">
+            <TextBlock x:Name="RoomNumberText" FontSize="20" FontWeight="Bold" />
+            <TextBlock x:Name="RoomQualityText" Margin="0,5"/>
+            <TextBlock x:Name="RoomAvailabilityText" Margin="0,5"/>
+
+            <Separator Margin="0,10"/>
+
+            <TextBlock Text="Reservations:" FontWeight="Bold"/>
+            <ListBox x:Name="ReservationsList" Height="100"/>
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <Button Content="Check In" Width="80" Margin="0,0,10,0" Click="CheckIn_Click"/>
+                <Button Content="Check Out" Width="80" Click="CheckOut_Click"/>
+            </StackPanel>
+
+
+            <TextBlock Text="Room Tasks:" FontWeight="Bold" Margin="0,10,0,0"/>
+            <ListBox x:Name="TasksList" Height="100"/>
+            <Button Content="Add Reservation" Margin="0,10,0,0" Width="150" Click="AddReservation_Click"/>
+            <Button Content="Register Room Task" Margin="0,5,0,0" Width="150" Click="AddTask_Click"/>
+            <Button Content="Delete Selected Reservation"
+        Margin="0,10,0,0"
+        Click="DeleteReservation_Click"
+        Width="200" Height="30"/>
+
+        </StackPanel>
+    </Grid>
+</Window>

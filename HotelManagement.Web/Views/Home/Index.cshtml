@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="text-center mb-5">
+        <h1 class="display-4">Welcome to Hotel Management</h1>
+        <p class="lead">Book and manage your hotel stays with ease</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <!-- Browse Rooms -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Browse Rooms</h5>
+                    <p class="card-text">View all available rooms in our hotel</p>
+                    <a asp-controller="Rooms" asp-action="Index" class="btn btn-primary">
+                        View Rooms
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Rooms -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Find a Room</h5>
+                    <p class="card-text">Search for rooms by date and features</p>
+                    <a asp-controller="Rooms" asp-action="Search" class="btn btn-success">
+                        Search Now
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Reservations -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">My Stays</h5>
+                    <p class="card-text">View and manage your reservations</p>
+                    <a asp-controller="Reservations" asp-action="MyReservations" class="btn btn-info">
+                        My Reservations
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        transition: transform 0.3s;
+        border: none;
+        border-radius: 10px;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+    .btn {
+        min-width: 120px;
+    }
+</style>

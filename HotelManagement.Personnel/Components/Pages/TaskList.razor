@@ -1,0 +1,124 @@
+﻿@page "/tasks/{RoleType:int}"
+@rendermode InteractiveServer
+@using HotelManagement.Shared.Models
+@using HotelManagement.Shared.Data
+@using Microsoft.EntityFrameworkCore
+@inject HotelDbContext DbContext
+@inject NavigationManager NavManager
+
+
+<PageTitle>@CurrentRoleType Tasks</PageTitle>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>@CurrentRoleType Tasks</h3>
+    <button class="btn btn-outline-secondary" @onclick="ReturnToRoleSelection">
+        <i class="fas fa-arrow-left me-2"></i>Change Role
+    </button>
+</div>
+
+@if (tasks == null)
+{
+    <div class="text-center my-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+}
+else if (!tasks.Any())
+{
+    <div class="alert alert-info">
+        No @CurrentRoleType.ToString().ToLower() tasks found.
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Room</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var task in tasks.OrderBy(t => t.Status))
+                {
+                    <tr>
+                        <td>
+                            <strong>Room @task.Room?.Number</strong><br>
+                            <small class="text-muted">@task.Room?.Quality, @task.Room?.Beds beds</small>
+                        </td>
+                        <td>
+                            <span class="badge @GetStatusBadgeClass(task.Status)">
+                                @task.Status
+                            </span>
+                        </td>
+                        <td>
+                            <textarea @bind="task.Notes"
+                            class="form-control form-control-sm"
+                            rows="2"
+                            placeholder="Add notes..."></textarea>
+                        </td>
+                        <td class="text-nowrap">
+                            <button class="btn btn-sm @GetActionButtonClass(task.Status, HotelManagement.Shared.Models.TaskStatus.InProgress)"
+                            @onclick="() => UpdateTaskStatus(task, HotelManagement.Shared.Models.TaskStatus.InProgress)"
+                            disabled="@(task.Status == HotelManagement.Shared.Models.TaskStatus.InProgress || task.Status == HotelManagement.Shared.Models.TaskStatus.Finished)">
+                                <i class="fas fa-play me-1"></i> Start
+                            </button>
+                            <button class="btn btn-sm @GetActionButtonClass(task.Status, HotelManagement.Shared.Models.TaskStatus.Finished)"
+                            @onclick="() => UpdateTaskStatus(task, HotelManagement.Shared.Models.TaskStatus.Finished)"
+                            disabled="@(task.Status != HotelManagement.Shared.Models.TaskStatus.InProgress)">
+                                <i class="fas fa-check me-1"></i> Complete
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    [Parameter] public int RoleType { get; set; }
+    private List<RoomTask> tasks = new();
+    private TaskType CurrentRoleType => (TaskType)RoleType;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadTasks();
+    }
+
+    private async Task LoadTasks()
+    {
+        tasks = await DbContext.RoomTasks
+    .Include(t => t.Room)
+    .Where(t => t.Type == CurrentRoleType && t.Status != Shared.Models.TaskStatus.Finished)
+    .ToListAsync();
+    }
+
+    private async Task UpdateTaskStatus(RoomTask task, HotelManagement.Shared.Models.TaskStatus newStatus)
+    {
+        task.Status = newStatus;
+        await DbContext.SaveChangesAsync();
+        await LoadTasks();
+    }
+
+    private void ReturnToRoleSelection()
+    {
+        NavManager.NavigateTo("/");
+    }
+
+    private string GetStatusBadgeClass(HotelManagement.Shared.Models.TaskStatus status) => status switch
+    {
+        HotelManagement.Shared.Models.TaskStatus.New => "bg-secondary",
+        HotelManagement.Shared.Models.TaskStatus.InProgress => "bg-warning text-dark",
+        HotelManagement.Shared.Models.TaskStatus.Finished => "bg-success",
+        _ => "bg-light text-dark"
+    };
+
+    private string GetActionButtonClass(HotelManagement.Shared.Models.TaskStatus currentStatus, HotelManagement.Shared.Models.TaskStatus targetStatus) =>
+        currentStatus == targetStatus ? "btn-dark disabled" :
+        targetStatus == HotelManagement.Shared.Models.TaskStatus.InProgress ? "btn-primary" : "btn-success";
+}

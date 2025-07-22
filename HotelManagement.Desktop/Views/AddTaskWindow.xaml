@@ -1,0 +1,26 @@
+﻿<Window x:Class="HotelManagement.Desktop.Views.AddTaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Task" Height="250" Width="300" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock Text="Task Type:"/>
+            <ComboBox x:Name="TaskTypeComboBox" Margin="0,5">
+                <ComboBoxItem Content="Cleaning"/>
+                <ComboBoxItem Content="RoomService"/>
+                <ComboBoxItem Content="Maintenance"/>
+            </ComboBox>
+
+            <TextBlock Text="Notes:" Margin="0,10,0,0"/>
+            <TextBox x:Name="NotesBox" Height="60" TextWrapping="Wrap"/>
+
+            <Button Content="Add Task" Width="100" Margin="0,15,0,0" Click="Confirm_Click" HorizontalAlignment="Right"/>
+        </StackPanel>
+    </Grid>
+</Window>

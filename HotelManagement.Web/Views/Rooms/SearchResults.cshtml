@@ -1,0 +1,103 @@
+﻿@model List<HotelManagement.Shared.Models.Room>
+@{
+    ViewData["Title"] = "Search Results";
+    var startDate = ViewBag.StartDate;
+    var endDate = ViewBag.EndDate;
+}
+
+<!-- Status Messages -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="container mt-4">
+    <h2>Available Rooms</h2>
+
+    <div class="mb-3">
+        <p class="text-muted">
+            Showing results for @startDate.ToShortDateString() to @endDate.ToShortDateString()
+        </p>
+    </div>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-info">
+            No available rooms found for your selected dates and criteria.
+            <a asp-action="Search" class="alert-link">Try different dates?</a>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Room Number</th>
+                        <th>Beds</th>
+                        <th>Quality</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var room in Model)
+                    {
+                        <tr>
+                            <td>@room.Number</td>
+                            <td>@room.Beds</td>
+                            <td>@room.Quality</td>
+                            <td>
+                                <span class="badge @(room.IsAvailable ? "bg-success" : "bg-warning")">
+                                    @(room.IsAvailable ? "Available" : "Booked")
+                                </span>
+                            </td>
+                            <td>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <form method="post" asp-controller="Reservations" asp-action="Book">
+                                        <input type="hidden" name="roomId" value="@room.Id" />
+                                        <input type="hidden" name="startDate" value="@startDate" />
+                                        <input type="hidden" name="endDate" value="@endDate" />
+                                        <button type="submit" class="btn btn-sm btn-primary"
+                                        @(!room.IsAvailable ? "disabled" : "")>
+                                            @(room.IsAvailable ? "Book Now" : "Unavailable")
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <a asp-area="Identity" asp-page="/Account/Login"
+                                       asp-route-returnUrl="@($"{Context.Request.Path}?start={startDate:yyyy-MM-dd}&end={endDate:yyyy-MM-dd}")"
+                                       class="btn btn-sm btn-primary">
+                                        Login to Book
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Enable Bootstrap tooltips
+        $(function () {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}

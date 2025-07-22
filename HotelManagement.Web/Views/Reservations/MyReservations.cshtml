@@ -1,0 +1,24 @@
+﻿@using HotelManagement.Shared.Models
+@model List<Reservation>
+<h2>My Reservations</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Room Number</th>
+            <th>Beds</th>
+            <th>Check-In</th>
+            <th>Check-Out</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.Room.Number</td>
+                <td>@r.Room.Beds</td>
+                <td>@r.StartDate.ToShortDateString()</td>
+                <td>@r.EndDate.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>

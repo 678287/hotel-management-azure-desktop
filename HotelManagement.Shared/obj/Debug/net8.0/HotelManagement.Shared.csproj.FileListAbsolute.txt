@@ -1,0 +1,12 @@
+D:\Vs\HotelManagement.Shared\obj\Debug\net8.0\HotelManagement.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Vs\HotelManagement.Shared\obj\Debug\net8.0\HotelManagement.Shared.AssemblyInfoInputs.cache
+D:\Vs\HotelManagement.Shared\obj\Debug\net8.0\HotelManagement.Shared.AssemblyInfo.cs
+D:\Vs\HotelManagement.Shared\obj\Debug\net8.0\HotelManagement.Shared.csproj.CoreCompileInputs.cache
+D:\Vs\HotelManagement.Shared\bin\Debug\net8.0\HotelManagement.Shared.deps.json
+D:\Vs\HotelManagement.Shared\bin\Debug\net8.0\HotelManagement.Shared.dll
+D:\Vs\HotelManagement.Shared\bin\Debug\net8.0\HotelManagement.Shared.pdb
+D:\Vs\HotelManagement.Shared\obj\Debug\net8.0\HotelManagement.Shared.dll
+D:\Vs\HotelManagement.Shared\obj\Debug\net8.0\refint\HotelManagement.Shared.dll
+D:\Vs\HotelManagement.Shared\obj\Debug\net8.0\HotelManagement.Shared.pdb
+D:\Vs\HotelManagement.Shared\obj\Debug\net8.0\ref\HotelManagement.Shared.dll
+D:\Vs\HotelManagement.Shared\obj\Debug\net8.0\HotelManagement.Shared.csproj.AssemblyReference.cache
