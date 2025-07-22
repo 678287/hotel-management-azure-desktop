@@ -1,18 +1,18 @@
 A modern desktop application for hospitality businesses, built with .NET WPF and Azure cloud services.
 .NET WPF Desktop Application
 
-How to Run
+## How to Run
+1. Clone this repository
+2. Open `HotelManagement.Web.sln` in Visual Studio
+3. Press F5 to build and run
 
-Clone this repository
+## Technologies Used
+- Blazor
+- MAUI
+- WPF 
+- Azure cloud services
 
-Open HotelManagement.Web.sln in Visual Studio
-
-Press F5 to build and run
-
-Key Features
-
-Room booking management
-
-Guest check-in/out
-
-Staff dashboard
+## Key Features
+- Room booking management
+- Guest check-in/out
+- Staff dashboard
